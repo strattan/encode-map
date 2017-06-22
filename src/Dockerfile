@@ -33,7 +33,7 @@ RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmoma
 RUN git clone --branch 0.7.10 https://github.com/lh3/bwa.git bwa_0_7_10 \
 	&& (cd bwa_0_7_10 && make)
 # ENCODE pipeline container repo
-ARG CACHEBUST=2
+ARG CACHEBUST=3
 RUN git clone https://github.com/strattan/encode-map.git encode-map
 RUN groupadd -r ubuntu \
 	&& useradd --no-log-init --create-home --system -g ubuntu --home /home/ubuntu ubuntu
