@@ -33,13 +33,12 @@ RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmoma
 RUN git clone --branch 0.7.10 https://github.com/lh3/bwa.git bwa_0_7_10 \
 	&& (cd bwa_0_7_10 && make)
 # ENCODE pipeline container repo
-RUN git clone --branch v0.2 https://github.com/ENCODE-DCC/pipeline-container.git \
-	&& (cd /image_software/pipeline-container && git fetch && git pull)
+RUN git clone --branch v0.3 https://github.com/strattan/encode-map.git encode-map
 
-RUN groupadd -r ubuntu && useradd --no-log-init -r -g ubuntu ubuntu
+RUN groupadd -r ubuntu \
+	&& useradd --no-log-init --create-home --system -g ubuntu --home /home/ubuntu ubuntu
 USER ubuntu
 WORKDIR /home/ubuntu
 
-#ENTRYPOINT ["python", "/image_software/pipeline-container/src/encode_map.py"]
-
-CMD ["/bin/bash"]
+ENTRYPOINT ["python", "/image_software/encode-map/encode-map/encode_map.py"]
+#CMD ["/bin/bash -l"]
