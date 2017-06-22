@@ -101,3 +101,5 @@ ENV/
 .mypy_cache/
 
 encode-map/.bash_history
+
+src/.bash_history
